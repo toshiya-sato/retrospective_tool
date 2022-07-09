@@ -1,5 +1,7 @@
 # retrospective_tool
 
+This is a repository for the challenge of mob programming on VR.
+
 A new Flutter project.
 
 ## Getting Started
