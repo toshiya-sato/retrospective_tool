@@ -41,7 +41,8 @@ class InputForm extends StatelessWidget {
                 labelText: 'Description',
                 border: OutlineInputBorder(),
               ),
-            )
+            ),
+            OutlinedButton(onPressed: () => {}, child: Text('登録'))
           ],
         ),
       ),
