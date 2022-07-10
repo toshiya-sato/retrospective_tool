@@ -19,47 +19,45 @@ class InputForm extends HookConsumerWidget {
     return Scaffold(
         body: Padding(
       padding: const EdgeInsets.all(8.0),
-      child: Expanded(
-        child: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            DropdownSearch<String>(
-              selectedItem: 'Keep',
-              onChanged: (String? newValue) {
-                selectCategory = newValue!;
-                debugPrint(selectCategory);
+      child: Column(
+        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          DropdownSearch<String>(
+            selectedItem: 'Keep',
+            onChanged: (String? newValue) {
+              selectCategory = newValue!;
+              debugPrint(selectCategory);
+            },
+            items: const <String>[
+              'Keep',
+              'Problem',
+              'Try',
+            ],
+          ),
+          TextFormField(
+            controller: titleFormControll,
+            decoration: const InputDecoration(
+              labelText: 'Title',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          TextFormField(
+            controller: descriptionFormControll,
+            minLines: 10,
+            maxLines: 10,
+            decoration: const InputDecoration(
+              labelText: 'Description',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          OutlinedButton(
+              onPressed: () {
+                _registerKptNote(ref, selectCategory, titleFormControll.text,
+                    descriptionFormControll.text);
+                Navigator.pop(context);
               },
-              items: const <String>[
-                'Keep',
-                'Problem',
-                'Try',
-              ],
-            ),
-            TextFormField(
-              controller: titleFormControll,
-              decoration: const InputDecoration(
-                labelText: 'Title',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            TextFormField(
-              controller: descriptionFormControll,
-              minLines: 10,
-              maxLines: 10,
-              decoration: const InputDecoration(
-                labelText: 'Description',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            OutlinedButton(
-                onPressed: () {
-                  _registerKptNote(ref, selectCategory, titleFormControll.text,
-                      descriptionFormControll.text);
-                  Navigator.pop(context);
-                },
-                child: const Text('登録'))
-          ],
-        ),
+              child: const Text('登録'))
+        ],
       ),
     ));
   }
