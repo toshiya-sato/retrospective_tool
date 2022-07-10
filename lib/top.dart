@@ -7,8 +7,8 @@ import 'package:retrospective_tool/widgets/kpt_note_widget.dart';
 import 'model/kpt_note.dart';
 import 'state/kpt_note_list.state.dart';
 
-class TopWidget extends StatelessWidget {
-  const TopWidget({Key? key}) : super(key: key);
+class Top extends StatelessWidget {
+  const Top({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
