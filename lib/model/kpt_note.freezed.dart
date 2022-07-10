@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
-part of 'sticky_note.dart';
+part of 'kpt_note.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-StickyNote _$StickyNoteFromJson(Map<String, dynamic> json) {
-  return _StickyNote.fromJson(json);
+KptNote _$KptNoteFromJson(Map<String, dynamic> json) {
+  return _KptNote.fromJson(json);
 }
 
 /// @nodoc
-mixin _$StickyNote {
+mixin _$KptNote {
   String get id => throw _privateConstructorUsedError;
   String get category => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
@@ -27,25 +27,23 @@ mixin _$StickyNote {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $StickyNoteCopyWith<StickyNote> get copyWith =>
-      throw _privateConstructorUsedError;
+  $KptNoteCopyWith<KptNote> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $StickyNoteCopyWith<$Res> {
-  factory $StickyNoteCopyWith(
-          StickyNote value, $Res Function(StickyNote) then) =
-      _$StickyNoteCopyWithImpl<$Res>;
+abstract class $KptNoteCopyWith<$Res> {
+  factory $KptNoteCopyWith(KptNote value, $Res Function(KptNote) then) =
+      _$KptNoteCopyWithImpl<$Res>;
   $Res call({String id, String category, String title, String description});
 }
 
 /// @nodoc
-class _$StickyNoteCopyWithImpl<$Res> implements $StickyNoteCopyWith<$Res> {
-  _$StickyNoteCopyWithImpl(this._value, this._then);
+class _$KptNoteCopyWithImpl<$Res> implements $KptNoteCopyWith<$Res> {
+  _$KptNoteCopyWithImpl(this._value, this._then);
 
-  final StickyNote _value;
+  final KptNote _value;
   // ignore: unused_field
-  final $Res Function(StickyNote) _then;
+  final $Res Function(KptNote) _then;
 
   @override
   $Res call({
@@ -76,24 +74,22 @@ class _$StickyNoteCopyWithImpl<$Res> implements $StickyNoteCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_StickyNoteCopyWith<$Res>
-    implements $StickyNoteCopyWith<$Res> {
-  factory _$$_StickyNoteCopyWith(
-          _$_StickyNote value, $Res Function(_$_StickyNote) then) =
-      __$$_StickyNoteCopyWithImpl<$Res>;
+abstract class _$$_KptNoteCopyWith<$Res> implements $KptNoteCopyWith<$Res> {
+  factory _$$_KptNoteCopyWith(
+          _$_KptNote value, $Res Function(_$_KptNote) then) =
+      __$$_KptNoteCopyWithImpl<$Res>;
   @override
   $Res call({String id, String category, String title, String description});
 }
 
 /// @nodoc
-class __$$_StickyNoteCopyWithImpl<$Res> extends _$StickyNoteCopyWithImpl<$Res>
-    implements _$$_StickyNoteCopyWith<$Res> {
-  __$$_StickyNoteCopyWithImpl(
-      _$_StickyNote _value, $Res Function(_$_StickyNote) _then)
-      : super(_value, (v) => _then(v as _$_StickyNote));
+class __$$_KptNoteCopyWithImpl<$Res> extends _$KptNoteCopyWithImpl<$Res>
+    implements _$$_KptNoteCopyWith<$Res> {
+  __$$_KptNoteCopyWithImpl(_$_KptNote _value, $Res Function(_$_KptNote) _then)
+      : super(_value, (v) => _then(v as _$_KptNote));
 
   @override
-  _$_StickyNote get _value => super._value as _$_StickyNote;
+  _$_KptNote get _value => super._value as _$_KptNote;
 
   @override
   $Res call({
@@ -102,7 +98,7 @@ class __$$_StickyNoteCopyWithImpl<$Res> extends _$StickyNoteCopyWithImpl<$Res>
     Object? title = freezed,
     Object? description = freezed,
   }) {
-    return _then(_$_StickyNote(
+    return _then(_$_KptNote(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -125,15 +121,15 @@ class __$$_StickyNoteCopyWithImpl<$Res> extends _$StickyNoteCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_StickyNote with DiagnosticableTreeMixin implements _StickyNote {
-  _$_StickyNote(
+class _$_KptNote with DiagnosticableTreeMixin implements _KptNote {
+  _$_KptNote(
       {required this.id,
       required this.category,
       required this.title,
       required this.description});
 
-  factory _$_StickyNote.fromJson(Map<String, dynamic> json) =>
-      _$$_StickyNoteFromJson(json);
+  factory _$_KptNote.fromJson(Map<String, dynamic> json) =>
+      _$$_KptNoteFromJson(json);
 
   @override
   final String id;
@@ -146,14 +142,14 @@ class _$_StickyNote with DiagnosticableTreeMixin implements _StickyNote {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'StickyNote(id: $id, category: $category, title: $title, description: $description)';
+    return 'KptNote(id: $id, category: $category, title: $title, description: $description)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'StickyNote'))
+      ..add(DiagnosticsProperty('type', 'KptNote'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('category', category))
       ..add(DiagnosticsProperty('title', title))
@@ -164,7 +160,7 @@ class _$_StickyNote with DiagnosticableTreeMixin implements _StickyNote {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StickyNote &&
+            other is _$_KptNote &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.category, category) &&
             const DeepCollectionEquality().equals(other.title, title) &&
@@ -183,24 +179,23 @@ class _$_StickyNote with DiagnosticableTreeMixin implements _StickyNote {
 
   @JsonKey(ignore: true)
   @override
-  _$$_StickyNoteCopyWith<_$_StickyNote> get copyWith =>
-      __$$_StickyNoteCopyWithImpl<_$_StickyNote>(this, _$identity);
+  _$$_KptNoteCopyWith<_$_KptNote> get copyWith =>
+      __$$_KptNoteCopyWithImpl<_$_KptNote>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_StickyNoteToJson(this);
+    return _$$_KptNoteToJson(this);
   }
 }
 
-abstract class _StickyNote implements StickyNote {
-  factory _StickyNote(
+abstract class _KptNote implements KptNote {
+  factory _KptNote(
       {required final String id,
       required final String category,
       required final String title,
-      required final String description}) = _$_StickyNote;
+      required final String description}) = _$_KptNote;
 
-  factory _StickyNote.fromJson(Map<String, dynamic> json) =
-      _$_StickyNote.fromJson;
+  factory _KptNote.fromJson(Map<String, dynamic> json) = _$_KptNote.fromJson;
 
   @override
   String get id;
@@ -212,6 +207,6 @@ abstract class _StickyNote implements StickyNote {
   String get description;
   @override
   @JsonKey(ignore: true)
-  _$$_StickyNoteCopyWith<_$_StickyNote> get copyWith =>
+  _$$_KptNoteCopyWith<_$_KptNote> get copyWith =>
       throw _privateConstructorUsedError;
 }
