@@ -50,7 +50,7 @@ class MyHomePage extends HookConsumerWidget {
           ),
           _generateNoteWidgets(problems, context),
           _generateCategoryHeadline(
-            'Problem',
+            'Try',
             Theme.of(context)
                 .textTheme
                 .headline3!
