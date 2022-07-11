@@ -18,13 +18,13 @@ class Top extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const KptGridPage(),
     );
   }
 }
 
-class MyHomePage extends HookConsumerWidget {
-  const MyHomePage({Key? key}) : super(key: key);
+class KptGridPage extends HookConsumerWidget {
+  const KptGridPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
