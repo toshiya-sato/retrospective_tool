@@ -1,7 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:retrospective_tool/input_form.dart';
+import 'package:retrospective_tool/widgets/browsing_kpt_note_widget.dart';
 import 'package:retrospective_tool/widgets/kpt_note_widget.dart';
 
 import 'model/kpt_note.dart';
@@ -14,7 +16,7 @@ class Top extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Retrospective Tool',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -62,7 +64,7 @@ class KptGridPage extends HookConsumerWidget {
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
-            showCupertinoModalBottomSheet(
+            showBarModalBottomSheet(
               context: context,
               builder: (context) => const InputForm(),
             );
@@ -102,6 +104,15 @@ class KptGridPage extends HookConsumerWidget {
                 (BuildContext context, int index) {
                   return KptNoteWidget(
                     kptNote: list[index],
+                    onDoubleTap: () {
+                      showCupertinoModalPopup(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return BrowsingKptNoteWidget(
+                              kptNote: list[index],
+                            );
+                          });
+                    },
                   );
                 },
                 childCount: list.length,
