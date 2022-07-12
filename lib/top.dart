@@ -42,7 +42,7 @@ class KptGridPage extends HookConsumerWidget {
             'Keep',
             Theme.of(context).textTheme.headline3!.copyWith(color: Colors.blue),
           ),
-          _generateNoteWidgets(keeps, context),
+          _generateNoteWidgets(keeps, context, ref),
           _generateCategoryHeadline(
             'Problem',
             Theme.of(context)
@@ -50,7 +50,7 @@ class KptGridPage extends HookConsumerWidget {
                 .headline3!
                 .copyWith(color: Colors.yellow[900]),
           ),
-          _generateNoteWidgets(problems, context),
+          _generateNoteWidgets(problems, context, ref),
           _generateCategoryHeadline(
             'Try',
             Theme.of(context)
@@ -58,7 +58,7 @@ class KptGridPage extends HookConsumerWidget {
                 .headline3!
                 .copyWith(color: Colors.green),
           ),
-          _generateNoteWidgets(tries, context),
+          _generateNoteWidgets(tries, context, ref),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -90,7 +90,8 @@ class KptGridPage extends HookConsumerWidget {
     );
   }
 
-  _generateNoteWidgets(List<KptNote> list, BuildContext context) {
+  _generateNoteWidgets(
+      List<KptNote> list, BuildContext context, WidgetRef ref) {
     return list.isNotEmpty
         ? SliverPadding(
             padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -110,6 +111,13 @@ class KptGridPage extends HookConsumerWidget {
                           builder: (BuildContext context) {
                             return BrowsingKptNoteWidget(
                               kptNote: list[index],
+                              onDelete: () {
+                                debugPrint('onDelete');
+                                ref
+                                    .watch(kptNoteListProvider.notifier)
+                                    .removeNote(list[index].id);
+                                Navigator.pop(context);
+                              },
                             );
                           });
                     },

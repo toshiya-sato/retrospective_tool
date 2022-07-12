@@ -1,9 +1,9 @@
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:retrospective_tool/model/kpt_note.dart';
 import 'package:retrospective_tool/state/kpt_note_list.state.dart';
-import 'package:retrospective_tool/state/text_controll.state.dart';
 import 'package:uuid/uuid.dart';
 
 class InputForm extends HookConsumerWidget {
@@ -12,8 +12,8 @@ class InputForm extends HookConsumerWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final titleFormControll = ref.watch(titleFormControllProvider);
-    final descriptionFormControll = ref.watch(descriptionFormControllProvider);
+    final titleFormControll = useTextEditingController();
+    final descriptionFormControll = useTextEditingController();
     String selectCategory = 'Keep';
 
     return Scaffold(
