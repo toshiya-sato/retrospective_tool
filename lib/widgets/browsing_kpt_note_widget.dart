@@ -4,9 +4,10 @@ import 'package:retrospective_tool/widgets/kpt_note_widget.dart';
 import '../model/kpt_note.dart';
 
 class BrowsingKptNoteWidget extends StatelessWidget {
-  const BrowsingKptNoteWidget({required this.kptNote, Key? key})
+  const BrowsingKptNoteWidget({required this.kptNote, this.onDelete, Key? key})
       : super(key: key);
   final KptNote kptNote;
+  final Function()? onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -27,6 +28,7 @@ class BrowsingKptNoteWidget extends StatelessWidget {
           ),
         ),
         FractionallySizedBox(
+            heightFactor: 0.9,
             widthFactor: 1,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -60,8 +62,8 @@ class BrowsingKptNoteWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 1,
+                GestureDetector(
+                  onTap: onDelete,
                   child: Container(
                     padding: const EdgeInsets.all(10.0),
                     decoration: BoxDecoration(
