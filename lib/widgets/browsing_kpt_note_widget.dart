@@ -2,12 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:retrospective_tool/widgets/kpt_note_widget.dart';
 
 import '../model/kpt_note.dart';
+import '../utils/kpt_note_util.dart';
 
 class BrowsingKptNoteWidget extends StatelessWidget {
-  const BrowsingKptNoteWidget({required this.kptNote, this.onDelete, Key? key})
+  const BrowsingKptNoteWidget(
+      {required this.kptNote,
+      this.onDelete,
+      this.onNext,
+      this.onPrevious,
+      Key? key})
       : super(key: key);
   final KptNote kptNote;
   final Function()? onDelete;
+  final Function()? onNext;
+  final Function()? onPrevious;
 
   @override
   Widget build(BuildContext context) {
@@ -47,9 +55,42 @@ class BrowsingKptNoteWidget extends StatelessWidget {
                         Expanded(
                           child: AspectRatio(
                             aspectRatio: 1,
-                            // TODO: 長文表示可能な専用のWidget作る
-                            child: KptNoteWidget(
-                              kptNote: kptNote,
+                            child: Card(
+                              color: KptNoteUtil.getColor(kptNote.category),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SingleChildScrollView(
+                                      scrollDirection: Axis.horizontal,
+                                      child: Text(
+                                        kptNote.title,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headlineSmall,
+                                        textAlign: TextAlign.left,
+
+                                        // overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    const SizedBox(
+                                      height: 4,
+                                    ),
+                                    Expanded(
+                                      child: CustomScrollView(
+                                        slivers: [
+                                          SliverToBoxAdapter(
+                                            child: Text(
+                                              kptNote.description,
+                                              textAlign: TextAlign.left,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -62,20 +103,17 @@ class BrowsingKptNoteWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: onDelete,
-                  child: Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).primaryColor),
-                    child: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).cardColor,
-                      size: 30,
-                    ),
+                RawMaterialButton(
+                  onPressed: onDelete,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(10.0),
+                  fillColor: Theme.of(context).primaryColor,
+                  child: Icon(
+                    Icons.delete,
+                    size: 30,
+                    color: Theme.of(context).cardColor,
                   ),
-                )
+                ),
               ],
             ))
       ],

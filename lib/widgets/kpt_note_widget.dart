@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../model/kpt_note.dart';
+import '../utils/kpt_note_util.dart';
 
 class KptNoteWidget extends StatelessWidget {
   const KptNoteWidget({required this.kptNote, this.onDoubleTap, Key? key})
@@ -13,7 +14,7 @@ class KptNoteWidget extends StatelessWidget {
     return GestureDetector(
       onDoubleTap: onDoubleTap,
       child: Card(
-        color: _getColor(kptNote.category),
+        color: KptNoteUtil.getColor(kptNote.category),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
@@ -39,18 +40,5 @@ class KptNoteWidget extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  _getColor(String category) {
-    switch (category) {
-      case "Keep":
-        return Colors.blue[100];
-      case "Problem":
-        return Colors.yellow[100];
-      case "Try":
-        return Colors.green[100];
-      default:
-        return Colors.red;
-    }
   }
 }
