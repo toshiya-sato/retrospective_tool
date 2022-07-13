@@ -62,20 +62,17 @@ class BrowsingKptNoteWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                GestureDetector(
-                  onTap: onDelete,
-                  child: Container(
-                    padding: const EdgeInsets.all(10.0),
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: Theme.of(context).primaryColor),
-                    child: Icon(
-                      Icons.delete,
-                      color: Theme.of(context).cardColor,
-                      size: 30,
-                    ),
+                RawMaterialButton(
+                  onPressed: onDelete,
+                  shape: const CircleBorder(),
+                  padding: const EdgeInsets.all(10.0),
+                  fillColor: Theme.of(context).primaryColor,
+                  child: Icon(
+                    Icons.delete,
+                    size: 30,
+                    color: Theme.of(context).cardColor,
                   ),
-                )
+                ),
               ],
             ))
       ],
