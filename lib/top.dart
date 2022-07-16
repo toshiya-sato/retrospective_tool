@@ -66,7 +66,7 @@ class KptGridPage extends HookConsumerWidget {
           onPressed: () {
             showBarModalBottomSheet(
               context: context,
-              builder: (context) => const InputForm(),
+              builder: (context) => InputForm(),
             );
           }),
     );
@@ -114,7 +114,7 @@ class KptGridPage extends HookConsumerWidget {
                               onDelete: () {
                                 debugPrint('onDelete');
                                 ref
-                                    .watch(kptNoteListProvider.notifier)
+                                    .read(kptNoteListProvider.notifier)
                                     .removeNote(list[index].id);
                                 Navigator.pop(context);
                               },
