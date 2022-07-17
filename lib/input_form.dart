@@ -7,16 +7,18 @@ import 'package:retrospective_tool/state/kpt_note_list.state.dart';
 import 'package:retrospective_tool/utils/kpt_note_util.dart';
 import 'package:uuid/uuid.dart';
 
-const _selectCategory = 'Keep';
+const _selectCategory = KptNoteUtil.keepVal;
 final categoryProvider = StateProvider<String>((ref) {
   return _selectCategory;
 });
 
 class InputForm extends HookConsumerWidget {
-  InputForm({Key? key}) : super(key: key) {
+  InputForm({Key? key, this.targetKptNote}) : super(key: key) {
     _formKey = GlobalKey<FormState>();
   }
   late final _formKey;
+  final KptNote? targetKptNote;
+  bool get isEditMode => targetKptNote != null;
 
   // This widget is the root of your application.
   @override
@@ -24,6 +26,19 @@ class InputForm extends HookConsumerWidget {
     final titleFormControll = useTextEditingController();
     final descriptionFormControll = useTextEditingController();
     String selectCategory = ref.watch(categoryProvider);
+
+    useEffect(() {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (isEditMode) {
+          _updateDropdownCategory(ref, targetKptNote!.category);
+          titleFormControll.text = targetKptNote!.title;
+          descriptionFormControll.text = targetKptNote!.description;
+        } else {
+          _updateDropdownCategory(ref, KptNoteUtil.keepVal);
+        }
+      });
+      return;
+    }, []);
 
     return Scaffold(
         backgroundColor: KptNoteUtil.getColor(selectCategory),
@@ -40,9 +55,9 @@ class InputForm extends HookConsumerWidget {
                     debugPrint(selectCategory);
                   },
                   items: const <String>[
-                    'Keep',
-                    'Problem',
-                    'Try',
+                    KptNoteUtil.keepVal,
+                    KptNoteUtil.problemVal,
+                    KptNoteUtil.tryVal,
                   ],
                   validator: (value) {
                     if (value == null || value.isEmpty) {
@@ -84,17 +99,27 @@ class InputForm extends HookConsumerWidget {
                 const Padding(padding: EdgeInsets.all(8.0)),
                 ElevatedButton.icon(
                     onPressed: () {
-                      if (_formKey.currentState!.validate()) {
+                      if (!_formKey.currentState!.validate()) {
+                        return;
+                      }
+                      if (isEditMode) {
+                        _updateKptNote(
+                          ref,
+                          selectCategory,
+                          titleFormControll.text,
+                          descriptionFormControll.text,
+                        );
+                      } else {
                         _registerKptNote(
                             ref,
                             selectCategory,
                             titleFormControll.text,
                             descriptionFormControll.text);
-                        Navigator.pop(context);
                       }
+                      Navigator.pop(context);
                     },
                     icon: const Icon(Icons.note_add),
-                    label: const Text('登録')),
+                    label: isEditMode ? const Text('修正') : const Text('登録')),
               ],
             ),
           ),
@@ -102,10 +127,24 @@ class InputForm extends HookConsumerWidget {
   }
 
   void _registerKptNote(
-      WidgetRef ref, String category, String titile, String description) {
+      WidgetRef ref, String category, String title, String description) {
     const uuid = Uuid();
     String id = uuid.v4();
-    return ref.read(kptNoteListProvider.notifier).addNote(KptNote(
-        id: id, category: category, title: titile, description: description));
+    ref.read(kptNoteListProvider.notifier).addNote(KptNote(
+        id: id, category: category, title: title, description: description));
+  }
+
+  void _updateKptNote(
+      WidgetRef ref, String category, String title, String description) {
+    final provider = ref.read(kptNoteListProvider.notifier).updateNote(
+          targetKptNote!.id,
+          category,
+          title,
+          description,
+        );
+  }
+
+  void _updateDropdownCategory(WidgetRef ref, String category) {
+    ref.read(categoryProvider.notifier).update((state) => category);
   }
 }

@@ -105,6 +105,14 @@ class KptGridPage extends HookConsumerWidget {
                 (BuildContext context, int index) {
                   return KptNoteWidget(
                     kptNote: list[index],
+                    onTap: () {
+                      showBarModalBottomSheet(
+                        context: context,
+                        builder: (context) => InputForm(
+                          targetKptNote: list[index],
+                        ),
+                      );
+                    },
                     onDoubleTap: () {
                       showCupertinoModalPopup(
                           context: context,

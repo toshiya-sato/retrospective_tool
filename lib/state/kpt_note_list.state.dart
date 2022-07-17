@@ -9,6 +9,17 @@ class KptNoteListNotifer extends StateNotifier<List<KptNote>> {
     state = [...state, kptNote];
   }
 
+  void updateNote(
+      String id, String category, String title, String description) {
+    state = state.map((kptList) {
+      if (kptList.id == id) {
+        return kptList.copyWith(
+            category: category, title: title, description: description);
+      }
+      return kptList;
+    }).toList();
+  }
+
   // KPT付箋の削除
   void removeNote(String id) {
     state = [

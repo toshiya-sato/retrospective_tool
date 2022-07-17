@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 class KptNoteUtil {
   static Color getColor(String category) {
     switch (category) {
-      case "Keep":
+      case keepVal:
         return Colors.blue[100]!;
-      case "Problem":
+      case problemVal:
         return Colors.yellow[100]!;
-      case "Try":
+      case tryVal:
         return Colors.green[100]!;
       default:
         return Colors.red;
     }
   }
+
+  static const String keepVal = 'Keep';
+  static const String problemVal = 'Problem';
+  static const String tryVal = 'Try';
 }
