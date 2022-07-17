@@ -4,14 +4,17 @@ import '../model/kpt_note.dart';
 import '../utils/kpt_note_util.dart';
 
 class KptNoteWidget extends StatelessWidget {
-  const KptNoteWidget({required this.kptNote, this.onDoubleTap, Key? key})
+  const KptNoteWidget(
+      {required this.kptNote, this.onDoubleTap, this.onTap, Key? key})
       : super(key: key);
   final KptNote kptNote;
   final Function()? onDoubleTap;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      onTap: onTap,
       onDoubleTap: onDoubleTap,
       child: Card(
         color: KptNoteUtil.getColor(kptNote.category),
