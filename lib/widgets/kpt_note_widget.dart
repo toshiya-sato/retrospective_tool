@@ -25,17 +25,18 @@ class KptNoteWidget extends StatelessWidget {
             children: [
               Text(
                 kptNote.title,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.titleMedium,
                 textAlign: TextAlign.left,
                 overflow: TextOverflow.ellipsis,
-                maxLines: 1,
+                maxLines: 2,
               ),
               Expanded(
                 child: Text(
                   kptNote.description,
+                  style: Theme.of(context).textTheme.bodySmall,
                   textAlign: TextAlign.left,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 4,
+                  maxLines: 8,
                 ),
               ),
             ],
